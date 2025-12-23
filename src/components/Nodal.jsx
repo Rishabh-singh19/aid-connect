@@ -6,10 +6,18 @@ export default function Nodal(){
     const [showForm, setShowForm] = useState(false);
     const [editingScheme, setEditingScheme] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+    const [viewMode, setViewMode] = useState('list'); // 'list' or 'card'
     const [formData, setFormData] = useState({
         title: '', desc: '', startDate: '', endDate: '', feeDate: '',
         correctionWindow: '', category: '', priority: 'Medium', status: 'active'
     });
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        if (confirm('Are you sure you want to logout?')) {
+            navigate('/');
+        }
+    };
 
     useEffect(() => {
         fetchSchemes();
@@ -92,12 +100,23 @@ export default function Nodal(){
                             <h1 className="text-2xl font-bold text-gray-800">Nodal Officer Portal</h1>
                             <p className="text-gray-600 text-sm">Manage Government Schemes</p>
                         </div>
-                        <button
-                            onClick={() => setShowForm(true)}
-                            className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200"
-                        >
-                            + New Scheme
-                        </button>
+                        <div className="flex items-center gap-4">
+                            <button
+                                onClick={() => setShowForm(true)}
+                                className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200 hover:cursor-pointer"
+                            >
+                                + New Scheme
+                            </button>
+                            <button
+                                onClick={handleLogout}
+                                className="flex items-center gap-2 px-6 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg hover:from-red-600 hover:to-red-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200 hover:cursor-pointer"
+                            >
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                                </svg>
+                                Logout
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -215,11 +234,11 @@ export default function Nodal(){
                                     </select>
                                 </div>
                                 <div className="flex gap-2">
-                                    <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                                    <button type="submit" className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 hover:shadow-lg transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
                                         {editingScheme ? 'Update' : 'Create'}
                                     </button>
                                     <button type="button" onClick={resetForm}
-                                        className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 hover:shadow-lg transform hover:scale-105 transition-all duration-200">
+                                        className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 hover:shadow-lg transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
                                         Cancel
                                     </button>
                                 </div>
@@ -232,81 +251,173 @@ export default function Nodal(){
                     <div className="p-6">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-lg font-semibold text-gray-800">All Schemes ({schemes.filter(s => s.title.toLowerCase().includes(searchTerm.toLowerCase()) || s.category.toLowerCase().includes(searchTerm.toLowerCase())).length})</h2>
-                            <div className="relative">
-                                <input
-                                    type="text"
-                                    placeholder="Search schemes..."
-                                    value={searchTerm}
-                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                    className="pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                                />
-                                <svg className="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                </svg>
+                            <div className="flex items-center gap-4">
+                                {/* View Mode Toggle */}
+                                <div className="flex bg-gray-100 rounded-lg p-1">
+                                    <button
+                                        onClick={() => setViewMode('list')}
+                                        className={`px-3 py-1 rounded-md text-sm font-medium transition-all duration-200 hover:cursor-pointer ${
+                                            viewMode === 'list' 
+                                                ? 'bg-white text-indigo-600 shadow-sm' 
+                                                : 'text-gray-600 hover:text-gray-800'
+                                        }`}
+                                    >
+                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                                        </svg>
+                                        List
+                                    </button>
+                                    <button
+                                        onClick={() => setViewMode('card')}
+                                        className={`px-3 py-1 rounded-md text-sm font-medium transition-all duration-200 hover:cursor-pointer ${
+                                            viewMode === 'card' 
+                                                ? 'bg-white text-indigo-600 shadow-sm' 
+                                                : 'text-gray-600 hover:text-gray-800'
+                                        }`}
+                                    >
+                                        <svg className="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                                        </svg>
+                                        Cards
+                                    </button>
+                                </div>
+                                <div className="relative">
+                                    <input
+                                        type="text"
+                                        placeholder="Search schemes..."
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        className="pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
+                                    />
+                                    <svg className="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div className="overflow-x-auto">
-                        <table className="w-full">
-                            <thead className="bg-gray-50">
-                                <tr>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Scheme</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">End Date</th>
-                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-gray-200">
+                    {/* List View */}
+                    {viewMode === 'list' && (
+                        <div className="overflow-x-auto">
+                            <table className="w-full">
+                                <thead className="bg-gray-50">
+                                    <tr>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Scheme</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Priority</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">End Date</th>
+                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className="divide-y divide-gray-200">
+                                    {schemes.filter(scheme => 
+                                        scheme.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                                        scheme.category.toLowerCase().includes(searchTerm.toLowerCase())
+                                    ).map((scheme) => (
+                                        <tr key={scheme.id} className="hover:bg-gray-50">
+                                            <td className="px-6 py-4">
+                                                <div>
+                                                    <div className="text-sm font-medium text-gray-900">{scheme.title}</div>
+                                                    <div className="text-sm text-gray-500">{scheme.desc.substring(0, 60)}...</div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4 text-sm text-gray-900">{scheme.category}</td>
+                                            <td className="px-6 py-4">
+                                                <span className={`px-2 py-1 text-xs rounded-full ${
+                                                    scheme.status === 'active' ? 'bg-green-100 text-green-800' :
+                                                    scheme.status === 'upcoming' ? 'bg-yellow-100 text-yellow-800' :
+                                                    'bg-red-100 text-red-800'
+                                                }`}>
+                                                    {scheme.status}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <span className={`px-2 py-1 text-xs rounded-full ${
+                                                    scheme.priority === 'High' ? 'bg-red-100 text-red-800' :
+                                                    scheme.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                                                    'bg-green-100 text-green-800'
+                                                }`}>
+                                                    {scheme.priority}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4 text-sm text-gray-900">{scheme.endDate}</td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex gap-2">
+                                                    <button onClick={() => handleEdit(scheme)}
+                                                        className="px-3 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 hover:shadow-md transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
+                                                        Edit
+                                                    </button>
+                                                    <button onClick={() => handleDelete(scheme.id)}
+                                                        className="px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 hover:shadow-md transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
+                                                        Delete
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+
+                    {/* Card View */}
+                    {viewMode === 'card' && (
+                        <div className="p-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {schemes.filter(scheme => 
                                     scheme.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                                     scheme.category.toLowerCase().includes(searchTerm.toLowerCase())
                                 ).map((scheme) => (
-                                    <tr key={scheme.id} className="hover:bg-gray-50">
-                                        <td className="px-6 py-4">
-                                            <div>
-                                                <div className="text-sm font-medium text-gray-900">{scheme.title}</div>
-                                                <div className="text-sm text-gray-500">{scheme.desc.substring(0, 60)}...</div>
+                                    <div key={scheme.id} className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 transform hover:scale-105">
+                                        <div className="p-6">
+                                            <div className="flex justify-between items-start mb-3">
+                                                <h3 className="text-lg font-semibold text-gray-900 truncate">{scheme.title}</h3>
+                                                <span className={`px-2 py-1 text-xs rounded-full ${
+                                                    scheme.status === 'active' ? 'bg-green-100 text-green-800' :
+                                                    scheme.status === 'upcoming' ? 'bg-yellow-100 text-yellow-800' :
+                                                    'bg-red-100 text-red-800'
+                                                }`}>
+                                                    {scheme.status}
+                                                </span>
                                             </div>
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-900">{scheme.category}</td>
-                                        <td className="px-6 py-4">
-                                            <span className={`px-2 py-1 text-xs rounded-full ${
-                                                scheme.status === 'active' ? 'bg-green-100 text-green-800' :
-                                                scheme.status === 'upcoming' ? 'bg-yellow-100 text-yellow-800' :
-                                                'bg-red-100 text-red-800'
-                                            }`}>
-                                                {scheme.status}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4">
-                                            <span className={`px-2 py-1 text-xs rounded-full ${
-                                                scheme.priority === 'High' ? 'bg-red-100 text-red-800' :
-                                                scheme.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
-                                                'bg-green-100 text-green-800'
-                                            }`}>
-                                                {scheme.priority}
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-900">{scheme.endDate}</td>
-                                        <td className="px-6 py-4">
+                                            <p className="text-gray-600 text-sm mb-4 line-clamp-3">{scheme.desc}</p>
+                                            <div className="space-y-2 mb-4">
+                                                <div className="flex justify-between text-sm">
+                                                    <span className="text-gray-500">Category:</span>
+                                                    <span className="font-medium">{scheme.category}</span>
+                                                </div>
+                                                <div className="flex justify-between text-sm">
+                                                    <span className="text-gray-500">Priority:</span>
+                                                    <span className={`px-2 py-1 text-xs rounded-full ${
+                                                        scheme.priority === 'High' ? 'bg-red-100 text-red-800' :
+                                                        scheme.priority === 'Medium' ? 'bg-yellow-100 text-yellow-800' :
+                                                        'bg-green-100 text-green-800'
+                                                    }`}>
+                                                        {scheme.priority}
+                                                    </span>
+                                                </div>
+                                                <div className="flex justify-between text-sm">
+                                                    <span className="text-gray-500">End Date:</span>
+                                                    <span className="font-medium">{scheme.endDate}</span>
+                                                </div>
+                                            </div>
                                             <div className="flex gap-2">
                                                 <button onClick={() => handleEdit(scheme)}
-                                                    className="px-3 py-1 bg-blue-500 text-white rounded text-xs hover:bg-blue-600 hover:shadow-md transform hover:scale-105 transition-all duration-200">
+                                                    className="flex-1 px-3 py-2 bg-blue-500 text-white rounded text-sm hover:bg-blue-600 hover:shadow-md transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
                                                     Edit
                                                 </button>
                                                 <button onClick={() => handleDelete(scheme.id)}
-                                                    className="px-3 py-1 bg-red-500 text-white rounded text-xs hover:bg-red-600 hover:shadow-md transform hover:scale-105 transition-all duration-200">
+                                                    className="flex-1 px-3 py-2 bg-red-500 text-white rounded text-sm hover:bg-red-600 hover:shadow-md transform hover:scale-105 transition-all duration-200 hover:cursor-pointer">
                                                     Delete
                                                 </button>
                                             </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    </div>
                                 ))}
-                            </tbody>
-                        </table>
-                    </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

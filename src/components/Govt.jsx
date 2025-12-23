@@ -183,7 +183,7 @@ export default function Govt() {
             <div className="flex space-x-2">
               <button 
                 onClick={() => navigate('/messages')}
-                className="relative px-4 py-2 bg-white text-blue-700 rounded-md text-sm hover:bg-gray-100 hover:scale-105 transition-all duration-200 font-semibold transform active:scale-95"
+                className="relative px-4 py-2 bg-white text-blue-700 rounded-md text-sm hover:bg-gray-100 hover:scale-105 transition-all duration-200 font-semibold transform active:scale-95 hover:cursor-pointer"
               >
                 Messages
                 {notificationCount > 0 && (
@@ -194,13 +194,13 @@ export default function Govt() {
               </button>
               <button 
                 onClick={() => navigate('/profile')}
-                className="px-4 py-2 bg-white text-blue-700 rounded-md text-sm hover:bg-gray-100 hover:scale-105 transition-all duration-200 font-semibold transform active:scale-95"
+                className="px-4 py-2 bg-white text-blue-700 rounded-md text-sm hover:bg-gray-100 hover:scale-105 hover:cursor-pointer transition-all duration-200 font-semibold transform active:scale-95"
               >
                 Profile
               </button>
               <button 
                 onClick={handleLogout}
-                className="px-4 py-2 bg-red-600 text-white rounded-md text-sm hover:bg-red-700 hover:scale-105 transition-all duration-200 font-semibold transform active:scale-95"
+                className="px-4 py-2 bg-red-600 text-white rounded-md text-sm hover:bg-red-700 hover:scale-105 transition-all duration-200 font-semibold transform active:scale-95 hover:cursor-pointer"
               >
                 Logout
               </button>
@@ -274,17 +274,17 @@ export default function Govt() {
       <section className="py-4 px-4 bg-gray-50">
         <div className="container mx-auto">
           <div className="flex justify-end mb-4">
-            <div className="bg-white rounded-lg border border-gray-200 p-1">
+            <div className="bg-white rounded-lg border border-gray-200 p-1 ">
               <button
-                className={`px-4 py-2 rounded-md font-medium transition ${
-                  viewMode === "cards" ? "bg-blue-700 text-white" : "text-gray-600 hover:text-blue-700"
+                className={`px-4 hover:cursor-pointer py-2 rounded-md font-medium transition ${
+                  viewMode === "cards" ? "bg-blue-700 text-white" : "text-gray-600 hover:text-blue-700 "
                 }`}
                 onClick={() => setViewMode("cards")}
               >
                 Cards
               </button>
               <button
-                className={`px-4 py-2 rounded-md font-medium transition ${
+                className={`px-4 hover:cursor-pointer py-2 rounded-md font-medium transition ${
                   viewMode === "list" ? "bg-blue-700 text-white" : "text-gray-600 hover:text-blue-700"
                 }`}
                 onClick={() => setViewMode("list")}
@@ -337,7 +337,7 @@ export default function Govt() {
                   </div>
                 </div>
 
-                <button className="w-full mt-4 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 hover:scale-105 transition-all duration-200 font-medium transform active:scale-95">
+                <button className="w-full mt-4 px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 hover:scale-105 transition-all duration-200 font-medium transform active:scale-95 hover:cursor-pointer">
                   View Details
                 </button>
               </div>
@@ -433,7 +433,7 @@ export default function Govt() {
                 className={`flex-1 px-6 py-3 rounded-lg font-semibold transition-all duration-200 shadow-md ${
                   selectedScheme.status === 'upcoming' 
                     ? 'bg-gray-400 text-gray-600 cursor-not-allowed' 
-                    : 'bg-blue-700 hover:bg-blue-800 text-white hover:scale-105 transform active:scale-95'
+                    : 'bg-blue-700 hover:bg-blue-800 text-white hover:scale-105 transform active:scale-95 hover:cursor-pointer'
                 }`}
                 onClick={() => selectedScheme.status !== 'upcoming' && handleApplyScheme(selectedScheme)}
                 disabled={selectedScheme.status === 'upcoming'}
@@ -441,7 +441,7 @@ export default function Govt() {
                 {selectedScheme.status === 'upcoming' ? 'Coming Soon' : 'Apply Now'}
               </button>
               <button
-                className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-semibold transition-all duration-200 hover:scale-105 transform active:scale-95"
+                className="px-6 py-3 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-lg font-semibold transition-all duration-200 hover:scale-105 transform active:scale-95 hover:cursor-pointer"
                 onClick={() => setSelectedScheme(null)}
               >
                 Close

@@ -141,10 +141,10 @@ const seedSchemes = async () => {
       ];
       
       await Scheme.insertMany(schemes);
-      console.log('✅ Schemes seeded successfully');
+      console.log('Schemes seeded successfully');
     }
   } catch (error) {
-    console.error('❌ Error seeding schemes:', error);
+    console.error('Error seeding schemes:', error);
   }
 };
 

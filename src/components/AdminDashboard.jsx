@@ -156,7 +156,7 @@ function AdminDashboard() {
             {sidebarOpen && <h1 className="font-semibold text-gray-800">Admin</h1>}
             <button 
               onClick={() => setSidebarOpen(!sidebarOpen)} 
-              className="p-1.5 rounded-md hover:bg-gray-100 text-gray-500"
+              className="p-1.5 rounded-md hover:bg-gray-100 text-gray-500 hover:cursor-pointer"
             >
               <i className={`fas ${sidebarOpen ? 'fa-chevron-left' : 'fa-chevron-right'}`}></i>
             </button>
@@ -168,7 +168,7 @@ function AdminDashboard() {
             <button
               key={item.id}
               onClick={() => setActiveTab(item.id)}
-              className={`w-full flex items-center px-3 py-2.5 text-left rounded-lg mb-1 transition-colors ${
+              className={`w-full flex items-center px-3 py-2.5 text-left rounded-lg mb-1 transition-colors hover:cursor-pointer ${
                 activeTab === item.id 
                   ? 'bg-blue-50 text-blue-600' 
                   : 'text-gray-600 hover:bg-gray-50'
@@ -192,7 +192,7 @@ function AdminDashboard() {
         <div className="mt-auto p-2">
           <button 
             onClick={() => navigate('/')} 
-            className="w-full flex items-center justify-center px-2 py-1.5 text-white bg-red-500 hover:bg-red-600 rounded-md transition-colors text-xs"
+            className="w-full flex items-center justify-center px-2 py-1.5 text-white bg-red-500 hover:bg-red-600 rounded-md transition-colors text-xs hover:cursor-pointer"
           >
             <i className="fas fa-sign-out-alt text-sm"></i>
             {sidebarOpen && <span className="ml-2">Logout</span>}
@@ -338,7 +338,7 @@ function AdminDashboard() {
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <button 
                   onClick={() => setActiveTab('pending')}
-                  className="p-4 bg-amber-50 hover:bg-amber-100 rounded-lg border border-amber-200 transition-colors group"
+                  className="p-4 bg-amber-50 hover:bg-amber-100 rounded-lg border border-amber-200 transition-colors group hover:cursor-pointer"
                 >
                   <div className="text-amber-600 text-2xl mb-2 group-hover:scale-110 transition-transform">
                     <i className="fas fa-clock"></i>
@@ -349,7 +349,7 @@ function AdminDashboard() {
                 
                 <button 
                   onClick={() => setActiveTab('users')}
-                  className="p-4 bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition-colors group"
+                  className="p-4 bg-blue-50 hover:bg-blue-100 rounded-lg border border-blue-200 transition-colors group hover:cursor-pointer"
                 >
                   <div className="text-blue-600 text-2xl mb-2 group-hover:scale-110 transition-transform">
                     <i className="fas fa-users"></i>
@@ -360,7 +360,7 @@ function AdminDashboard() {
                 
                 <button 
                   onClick={() => setActiveTab('approved')}
-                  className="p-4 bg-green-50 hover:bg-green-100 rounded-lg border border-green-200 transition-colors group"
+                  className="p-4 bg-green-50 hover:bg-green-100 rounded-lg border border-green-200 transition-colors group hover:cursor-pointer"
                 >
                   <div className="text-green-600 text-2xl mb-2 group-hover:scale-110 transition-transform">
                     <i className="fas fa-check-circle"></i>
@@ -371,7 +371,7 @@ function AdminDashboard() {
                 
                 <button 
                   onClick={() => setActiveTab('applications')}
-                  className="p-4 bg-purple-50 hover:bg-purple-100 rounded-lg border border-purple-200 transition-colors group"
+                  className="p-4 bg-purple-50 hover:bg-purple-100 rounded-lg border border-purple-200 transition-colors group hover:cursor-pointer"
                 >
                   <div className="text-purple-600 text-2xl mb-2 group-hover:scale-110 transition-transform">
                     <i className="fas fa-file-alt"></i>
@@ -413,7 +413,7 @@ function AdminDashboard() {
                   Showing {filteredUsers.length} user{filteredUsers.length !== 1 ? 's' : ''} for "{userSearchTerm}"
                   <button 
                     onClick={() => setUserSearchTerm('')}
-                    className="ml-2 text-blue-600 hover:text-blue-800 underline"
+                    className="ml-2 text-blue-600 hover:text-blue-800 underline hover:cursor-pointer"
                   >
                     Clear search
                   </button>
@@ -444,7 +444,7 @@ function AdminDashboard() {
                       </div>
                       <button 
                         onClick={() => setSelectedUser(user)} 
-                        className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-md transition-colors"
+                        className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm rounded-md transition-colors hover:cursor-pointer"
                       >
                         View
                       </button>
@@ -503,7 +503,7 @@ function AdminDashboard() {
                   Showing {filteredApplications.length} result{filteredApplications.length !== 1 ? 's' : ''} for "{searchTerm}"
                   <button 
                     onClick={() => setSearchTerm('')}
-                    className="ml-2 text-blue-600 hover:text-blue-800 underline"
+                    className="ml-2 text-blue-600 hover:text-blue-800 underline hover:cursor-pointer"
                   >
                     Clear search
                   </button>
@@ -553,13 +553,13 @@ function AdminDashboard() {
                           <div className="flex space-x-2">
                             <button 
                               onClick={() => setSelectedUser(app.userId)} 
-                              className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                              className="text-blue-600 hover:text-blue-800 text-sm font-medium hover:cursor-pointer"
                             >
                               View User
                             </button>
                             <button 
                               onClick={() => navigate(`/admin/approval/${app._id}`)} 
-                              className="px-3 py-1 bg-indigo-500 text-white text-xs rounded hover:bg-indigo-600"
+                              className="hover:cursor-pointer px-3 py-1 bg-indigo-500 text-white text-xs rounded hover:bg-indigo-600"
                             >
                               <i className="fas fa-eye mr-1"></i>Review
                             </button>
@@ -584,7 +584,7 @@ function AdminDashboard() {
                 <h3 className="text-xl font-semibold text-gray-900">User Details</h3>
                 <button 
                   onClick={() => setSelectedUser(null)} 
-                  className="text-gray-400 hover:text-gray-500"
+                  className="text-gray-400 hover:text-gray-500 hover:cursor-pointer"
                 >
                   <i className="fas fa-times text-xl"></i>
                 </button>

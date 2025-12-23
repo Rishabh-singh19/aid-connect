@@ -4,10 +4,10 @@ const path = require('path');
 const User = require('../models/User');
 const router = express.Router();
 
-// Multer configuration
+//multer use->for storing pdf,images
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, 'uploads/');//a callback function h 
   },
   filename: (req, file, cb) => {
     cb(null, Date.now() + '-' + file.originalname);

@@ -78,10 +78,10 @@ function Profile() {
               onClick={() => navigate('/schemes')}
               className="p-2 hover:bg-gray-100 rounded-lg"
             >
-              <i className="fas fa-arrow-left text-gray-600"></i>
+              <i className="fas fa-arrow-left text-gray-600 hover:cursor-pointer"></i>
             </button>
             <div>
-              <h1 className="text-2xl font-semibold text-gray-900">My Profile</h1>
+              <h1 className="text-2xl font-semibold text-gray-900 ">My Profile</h1>
               <p className="text-gray-500 text-sm">View your applications and profile information</p>
             </div>
           </div>
@@ -121,7 +121,7 @@ function Profile() {
               <div>
                 <button 
                   onClick={() => navigate('/info')}
-                  className={`px-4 py-2 rounded-lg transition-colors font-medium ${
+                  className={`px-4 py-2 hover:cursor-pointer rounded-lg transition-colors font-medium ${
                     user?.isPersonalInfoCompleted 
                       ? 'bg-green-600 text-white hover:bg-green-700' 
                       : 'bg-blue-600 text-white hover:bg-blue-700'
@@ -143,7 +143,7 @@ function Profile() {
               </h3>
               <button 
                 onClick={() => navigate('/schemes')}
-                className="px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600"
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg text-sm hover:bg-blue-600 hover:cursor-pointer"
               >
                 <i className="fas fa-plus mr-2"></i>Apply for New Scheme
               </button>

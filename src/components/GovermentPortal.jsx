@@ -52,7 +52,7 @@ const GovernmentPortal = () => {
             <Shield className="h-6 w-6" />
             <span className="font-semibold text-lg">Government Portal</span>
           </div>
-          <button onClick={handleApplyClick} className="bg-white text-blue-700 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-md transform">
+          <button onClick={handleApplyClick} className="bg-white text-blue-700 px-6 py-2 rounded-md font-semibold hover:bg-gray-100 hover:scale-105 transition-all duration-300 shadow-md transform hover:cursor-pointer">
             Apply Now
           </button>
         </div>
@@ -68,7 +68,7 @@ const GovernmentPortal = () => {
             <p className="text-xl text-gray-600 mb-8 animate-fadeInUp animation-delay-200">
               Empowering citizens with transparent and efficient beneficiary identification.
             </p>
-            <button onClick={handleApplyClick} className="bg-blue-700 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-blue-800 hover:scale-105 transition-all duration-300 shadow-lg mb-8 transform animate-fadeInUp animation-delay-400">
+            <button onClick={handleApplyClick} className="bg-blue-700 text-white px-8 py-3 rounded-md text-lg font-semibold hover:bg-blue-800 hover:scale-105 transition-all duration-300 shadow-lg mb-8 transform animate-fadeInUp animation-delay-400 hover:cursor-pointer">
               Apply Now
             </button>
             
@@ -246,7 +246,7 @@ const GovernmentPortal = () => {
 
       {/* Floating Mobile Apply Button */}
       <div className="md:hidden fixed bottom-6 right-6 animate-bounce">
-        <button onClick={handleApplyClick} className="bg-blue-700 text-white p-4 rounded-full shadow-2xl hover:bg-blue-800 hover:scale-110 transition-all duration-300 transform pulse-animation">
+        <button onClick={handleApplyClick} className="bg-blue-700 text-white p-4 rounded-full shadow-2xl hover:bg-blue-800 hover:scale-110 transition-all duration-300 transform pulse-animation hover:cursor-pointer">
           <span className="font-semibold">Apply Now</span>
         </button>
       </div>

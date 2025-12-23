@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-// Use same configuration as OTP service
+
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {

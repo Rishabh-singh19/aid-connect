@@ -311,7 +311,7 @@ function DocumentUploader() {
                         }
                         
                         console.log('Uploading documents to MongoDB...');
-                        const response = await fetch(`${API_URL}/api/documents/upload-documents', {
+                        const response = await fetch(`${API_URL}/api/documents/upload-documents`, {
                           method: 'POST',
                           body: formData
                         });

@@ -26,7 +26,7 @@ export default function Nodal(){
 
     const fetchSchemes = async () => {
         try {
-            const response = await fetch(`${API_URL}/api/schemes');
+            const response = await fetch(`${API_URL}/api/schemes`);
             const data = await response.json();
             setSchemes(data);
         } catch (error) {
@@ -39,7 +39,7 @@ export default function Nodal(){
         try {
             const url = editingScheme 
                 ? `${API_URL}/api/schemes/${editingScheme.id}`
-                : `${API_URL}/api/schemes';
+                : `${API_URL}/api/schemes`;
             
             const response = await fetch(url, {
                 method: editingScheme ? 'PUT' : 'POST',

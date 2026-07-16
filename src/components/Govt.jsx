@@ -24,7 +24,7 @@ export default function Govt() {
 
   const fetchSchemes = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/schemes');
+      const response = await fetch(`${API_URL}/api/schemes`);
       const data = await response.json();
       setAllSchemes(data);
     } catch (error) {
@@ -68,7 +68,7 @@ export default function Govt() {
       
       console.log('Sending application data:', applicationData);
       
-      const response = await fetch(`${API_URL}/api/applications/apply', {
+      const response = await fetch(`${API_URL}/api/applications/apply`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

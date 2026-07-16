@@ -78,7 +78,7 @@ function AdminDashboard() {
 
   const fetchAllData = async () => {
     try {
-      const response = await fetch(`${API_URL}/api/admin/all-data');
+      const response = await fetch(`${API_URL}/api/admin/all-data`);
       const data = await response.json();
       setUsers(data.users || []);
       setApplications(data.applications || []);

@@ -140,7 +140,7 @@ function CameraCapture() {
       }
       
       // Upload to backend
-      const uploadResponse = await fetch(`${API_URL}/api/documents/upload-photo', {
+      const uploadResponse = await fetch(`${API_URL}/api/documents/upload-photo`, {
         method: 'POST',
         body: formData
       });

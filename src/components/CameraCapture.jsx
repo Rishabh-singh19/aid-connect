@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 function CameraCapture() {
   const videoRef = useRef(null);
@@ -139,7 +140,7 @@ function CameraCapture() {
       }
       
       // Upload to backend
-      const uploadResponse = await fetch('http://localhost:5000/api/documents/upload-photo', {
+      const uploadResponse = await fetch(`${API_URL}/api/documents/upload-photo', {
         method: 'POST',
         body: formData
       });

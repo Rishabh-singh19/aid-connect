@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from '../config';
 
 // Reusable Components
 const DocumentLinks = ({ documents }) => {
@@ -16,7 +17,7 @@ const DocumentLinks = ({ documents }) => {
         documents?.[key] && (
           <div key={key} className="text-sm">
             <a 
-              href={`http://localhost:5000/uploads/${documents[key]}`} 
+              href={`${API_URL}/uploads/${documents[key]}`} 
               target="_blank" 
               rel="noopener noreferrer" 
               className="text-blue-600 hover:text-blue-800 hover:underline"
@@ -50,7 +51,7 @@ const UserAvatar = ({ user, size = 'h-10 w-10' }) => (
   user.photo ? (
     <img 
       className={`${size} rounded-full object-cover border border-gray-200`} 
-      src={`http://localhost:5000/uploads/${user.photo}`} 
+      src={`${API_URL}/uploads/${user.photo}`} 
       alt={user.name} 
     />
   ) : (
@@ -77,7 +78,7 @@ function AdminDashboard() {
 
   const fetchAllData = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/admin/all-data');
+      const response = await fetch(`${API_URL}/api/admin/all-data');
       const data = await response.json();
       setUsers(data.users || []);
       setApplications(data.applications || []);
@@ -632,7 +633,7 @@ function AdminDashboard() {
                     {selectedUser.photo && (
                       <div className="mt-3 pt-3 border-t border-gray-200">
                         <a 
-                          href={`http://localhost:5000/uploads/${selectedUser.photo}`} 
+                          href={`${API_URL}/uploads/${selectedUser.photo}`} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-blue-600 hover:text-blue-800 text-sm hover:underline"

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from '../config';
 
 function Info() {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ function Info() {
 
   const loadUserData = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/users/${userId}`);
+      const response = await fetch(`${API_URL}/api/auth/users/${userId}`);
       const userData = await response.json();
       
       if (userData.isPersonalInfoCompleted) {
@@ -148,7 +149,7 @@ function Info() {
     
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/users/${user._id || user.id}/personal-info`, {
+      const response = await fetch(`${API_URL}/api/auth/users/${user._id || user.id}/personal-info`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

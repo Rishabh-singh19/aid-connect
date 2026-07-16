@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 export default function Messages() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ export default function Messages() {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/applications/messages/${user._id || user.id}`);
+      const response = await fetch(`${API_URL}/api/applications/messages/${user._id || user.id}`);
       const data = await response.json();
       setMessages(data);
     } catch (error) {

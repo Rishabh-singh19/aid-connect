@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
 function DocumentUploader() {
   const navigate = useNavigate();
@@ -248,7 +249,7 @@ function DocumentUploader() {
                       return;
                     }
                     
-                    const response = await fetch(`http://localhost:5000/api/documents/user-documents/${user._id || user.id}`);
+                    const response = await fetch(`${API_URL}/api/documents/user-documents/${user._id || user.id}`);
                     const result = await response.json();
                     
                     if (response.ok) {
@@ -310,7 +311,7 @@ function DocumentUploader() {
                         }
                         
                         console.log('Uploading documents to MongoDB...');
-                        const response = await fetch('http://localhost:5000/api/documents/upload-documents', {
+                        const response = await fetch(`${API_URL}/api/documents/upload-documents', {
                           method: 'POST',
                           body: formData
                         });

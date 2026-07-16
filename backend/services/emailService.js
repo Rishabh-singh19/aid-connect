@@ -1,18 +1,23 @@
 const nodemailer = require('nodemailer');
 
 
+const EMAIL_SERVICE = process.env.EMAIL_SERVICE || 'gmail';
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
+const EMAIL_FROM = process.env.EMAIL_FROM || EMAIL_USER || 'no-reply@example.com';
+
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: EMAIL_SERVICE,
   auth: {
-    user: 'maxrushto77@gmail.com',
-    pass: 'nwwr nynd vque gter'
+    user: EMAIL_USER,
+    pass: EMAIL_PASS
   }
 });
 
 const sendApprovalEmail = async (userEmail, userName, pdfBuffer, applicationId) => {
   try {
     const mailOptions = {
-      from: 'maxrushto77@gmail.com',
+      from: EMAIL_FROM,
       to: userEmail,
       subject: 'Application Approved - Scheme Portal',
       html: `
@@ -53,7 +58,7 @@ const sendApprovalEmail = async (userEmail, userName, pdfBuffer, applicationId) 
 const sendRejectionEmail = async (userEmail, userName, applicationId, remarks) => {
   try {
     const mailOptions = {
-      from: 'maxrushto77@gmail.com',
+      from: EMAIL_FROM,
       to: userEmail,
       subject: 'Application Status Update - Scheme Portal',
       html: `

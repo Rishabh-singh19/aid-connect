@@ -4,11 +4,16 @@ const User = require('../models/User');
 const router = express.Router();
 
 // Email configuration
+const EMAIL_SERVICE = process.env.EMAIL_SERVICE || 'gmail';
+const EMAIL_USER = process.env.EMAIL_USER;
+const EMAIL_PASS = process.env.EMAIL_PASS;
+const EMAIL_FROM = process.env.EMAIL_FROM || EMAIL_USER || 'no-reply@example.com';
+
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
+  service: EMAIL_SERVICE,
   auth: {
-    user: 'maxrushto77@gmail.com',
-    pass: 'nwwr nynd vque gter'
+    user: EMAIL_USER,
+    pass: EMAIL_PASS
   }
 });
 
@@ -48,7 +53,7 @@ router.post('/send-otp', async (req, res) => {
 
     // Send email
     const mailOptions = {
-      from: 'maxrushto77@gmail.com',
+      from: EMAIL_FROM,
       to: email,
       subject: 'OTP Verification - Scheme Portal',
       html: `

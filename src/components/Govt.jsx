@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from '../config';
 
 export default function Govt() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ export default function Govt() {
 
   const fetchSchemes = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/schemes');
+      const response = await fetch(`${API_URL}/api/schemes');
       const data = await response.json();
       setAllSchemes(data);
     } catch (error) {
@@ -33,7 +34,7 @@ export default function Govt() {
 
   const fetchNotificationCount = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/applications/notifications/${user._id || user.id}/count`);
+      const response = await fetch(`${API_URL}/api/applications/notifications/${user._id || user.id}/count`);
       const data = await response.json();
       setNotificationCount(data.count);
     } catch (error) {
@@ -67,7 +68,7 @@ export default function Govt() {
       
       console.log('Sending application data:', applicationData);
       
-      const response = await fetch('http://localhost:5000/api/applications/apply', {
+      const response = await fetch(`${API_URL}/api/applications/apply', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -165,7 +166,7 @@ export default function Govt() {
               <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border border-gray-200">
                 {user?.photo ? (
                   <img 
-                    src={`http://localhost:5000/uploads/${user.photo}`} 
+                    src={`${API_URL}/uploads/${user.photo}`} 
                     alt="Profile" 
                     className="w-full h-full object-cover"
                   />

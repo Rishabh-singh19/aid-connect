@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_URL } from '../config';
 
 export default function Nodal(){
     const [schemes, setSchemes] = useState([]);
@@ -25,7 +26,7 @@ export default function Nodal(){
 
     const fetchSchemes = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/schemes');
+            const response = await fetch(`${API_URL}/api/schemes');
             const data = await response.json();
             setSchemes(data);
         } catch (error) {
@@ -37,8 +38,8 @@ export default function Nodal(){
         e.preventDefault();
         try {
             const url = editingScheme 
-                ? `http://localhost:5000/api/schemes/${editingScheme.id}`
-                : 'http://localhost:5000/api/schemes';
+                ? `${API_URL}/api/schemes/${editingScheme.id}`
+                : `${API_URL}/api/schemes';
             
             const response = await fetch(url, {
                 method: editingScheme ? 'PUT' : 'POST',
@@ -69,7 +70,7 @@ export default function Nodal(){
     const handleDelete = async (id) => {
         if (confirm('Delete this scheme?')) {
             try {
-                const response = await fetch(`http://localhost:5000/api/schemes/${id}`, {
+                const response = await fetch(`${API_URL}/api/schemes/${id}`, {
                     method: 'DELETE'
                 });
                 if (response.ok) {
